@@ -1,0 +1,66 @@
+script(type="text/x-template")#preview-container
+  .portfolio__content(v-if="works.length")
+    display(
+      :currentIndex="currentIndex"
+      :currentWork="currentWork"
+      :works="works"
+      @slide="changeSlide"
+      @previewClicked="handlePreviewClick"
+    )
+    info(:currentWork="currentWork")
+script(type="text/x-template")#preview-slider
+  .slider(:data-slide="currentIndex+1")
+    .slider__main
+      .slider__window
+        .slider__current-item
+          img(:src ="currentWork.photo").current-image-full
+          thumbs(
+            :works="works"
+            :currentWork="currentWork"
+            @previewClicked="handlePreviewClick"
+          )
+      buttons(
+        :currentIndex="currentIndex"
+        :worksLength="works.length"
+        @slide="$emit('slide', $event)"
+      )
+
+script(type="text/x-template")#preview-thumbs
+  .slider__preview-wrapper.tabs-phones-hidden
+    button(type="button").slider__preview(
+      v-for="work in works"
+      @click="$emit('previewClicked', work.id)"
+      :key="work.id"
+      :class="[{'desktop-hidden' : work.id === works.length}, {'active' : work.id === currentWork.id}]"
+      :style="{background: `url(${work.photo}) no-repeat center center`, backgroundSize: 'cover'}"
+    )
+
+
+script(type="text/x-template")#preview-slider__btns
+  .slider__buttons
+    button(
+      :disabled="currentIndex === worksLength - 1"
+      @click.prevent="$emit('slide', 'next')"
+    ).up-btn
+      +icon("arrow-down", "arrow-down")
+    button(
+      :disabled="currentIndex === 0"
+      @click.prevent="$emit('slide', 'prev')"
+    ).down-btn
+      +icon("arrow-down", "arrow-up")
+
+
+script(type="text/x-template")#preview-info
+  .portfolio__desc
+    tags(:skills="tagsArray")
+    h3.portfolio__desc-title {{currentWork.title}}
+    .portfolio__desc-info {{currentWork.desc}}
+    a(:href="currentWork.link" target="_blank").portfolio__desc-link
+      +icon("link", "portfolio__desc-link-icon")
+      |Посмотреть сайт
+
+
+script(type="text/x-template")#preview-info__tags
+  ul.tag-list
+    li.tag(v-for="skill in skills")
+      span {{skill.trim()}}

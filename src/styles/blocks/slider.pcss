@@ -1,0 +1,116 @@
+.slider {
+    flex: 5;
+    max-width: 1133px;
+    position: relative;
+    margin-right: 140px;
+    &::after {
+        content: attr(data-slide);
+        position: absolute;
+        right: 0%;
+        top: 0;
+        transform: translate(140px, 10px);
+        font-size: 400px;
+        font-weight: 800;
+        line-height: 1;
+        color: #e6e6e6;
+        z-index: -1;
+    }
+
+}
+
+.slider__main {
+    height: 570px;
+    position: relative;
+}
+
+.slider__buttons {
+    float: right;
+    
+    .up-btn,
+    .down-btn {
+        display: inline-block;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        outline: none;
+        background-color: #353e4e;
+        
+        svg {
+            fill: #fff;
+            height: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            &.arrow-up {
+                transform: translate(-50%, -50%) rotate(-90deg);
+                transform-origin: 50% 50%;
+            }
+            &.arrow-down {
+                transform: translate(-50%, -50%) rotate(90deg);
+                transform-origin: 50% 50%;
+            }
+        }
+
+        &:hover {
+            background-color: #282e3b;
+        }
+        &:active {
+            background-color: #1a1e26;
+            svg {
+                opacity: 0.6;
+            }
+        }
+
+        &:disabled {
+            svg {
+                opacity: 0.3;
+            }
+        }
+
+
+        
+    }
+
+}
+
+.slider__current-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slider__preview-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-width: 310px;
+    max-height: 610px;
+    box-shadow: -25px 0px 45px rgba(0,0,0,0.6);
+}
+
+.slider__preview {
+    padding: 0;
+    display: block;
+    outline: none;
+    width: 180px;
+    height: 110px;
+    transition: 0.4s;
+    img {
+        width: 100%;
+    }
+    &.active {
+        border: 3px solid #dc9322;
+    }
+}
+
+.slider__window {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.current-image-full {
+    width: 100%;
+    height: 100%;
+}

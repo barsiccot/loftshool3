@@ -1,0 +1,25 @@
+include ./mixins.pug
+include ./circleChart.pug
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Portfolio | main page
+  body
+    .wrapper
+      .welcome-chapters
+        include components/blocks/welcome_chapters
+        include components/chapters/main
+        include components/chapters/about
+      include components/chapters/skills
+      include components/chapters/portfolio
+      .last-chapters
+        include components/blocks/last_chapters
+        include components/chapters/reviews
+      include  components/layout/footer
+        include components/chapters/tempComponents/skills
+        include components/chapters/tempComponents/portfolio
+        include components/chapters/tempComponents/reviews
