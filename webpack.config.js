@@ -13,7 +13,6 @@ module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
   const publicPath = '/loftschool/dist/';
 
-
   const pcss = {
     test: /\.(p|post|)css$/,
     use: [
