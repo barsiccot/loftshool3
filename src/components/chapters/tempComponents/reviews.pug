@@ -13,7 +13,7 @@ script(type="text/x-template")#reviews-container
              @click="slideChange('next')"
            ).circle-btn
              +icon("arrow-down", "right-arrow")
-    swiper(ref="reviews-slider")
+    swiper(ref="reviews-slider" :options="sliderOptions")
      swiper-slide(v-for="review in reviews" :key="review.id")
         .review-item
              +icon("quote", "review-item__quote-icon")
