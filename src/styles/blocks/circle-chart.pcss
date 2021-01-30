@@ -15,7 +15,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
+        @media screen and (max-width: $bp-phones) {
+            font-size: 16px;
+            opacity: 0.6;
+        }
     }
 
     circle:nth-child(2) {
@@ -23,4 +26,7 @@
         transform-origin: 50% 50%;
     }
 
+    @media screen and (max-width: $bp-phones) {
+        min-width: 130px;
+    }
 }

@@ -1,21 +1,41 @@
+@mixin desktopHd() {
+  @media screen and (max-width: $bp-desktop-hd) {
+    @content;
+  }
+}
 
- @mixin desktopHd() {
-   @media screen and (max-width: $bp-desktop-hd) {
-     @content;
-   }
- }
- @mixin desktop() {
-   @media screen and (max-width: $bp-desktop) {
-     @content;
- }
- }
- @mixin tablets() {
-   @media screen and (max-width: $bp-tablets) {
-     @content;
-   }
- }
- @mixin phones() {
-   @media screen and (max-width: $bp-phones) {
-     @content;
-   }
- }
+@mixin desktop() {
+  @media screen and (max-width: $bp-desktop) {
+    @content;
+  }
+}
+
+@mixin desktop-tabs() {
+  @media screen and (max-width: $bp-desktop-tabs) {
+    @content;
+  }
+}
+
+@mixin tablets() {
+  @media screen and (max-width: $bp-tablets) {
+    @content;
+  }
+}
+
+@mixin tablets-650() {
+  @media screen and (max-width: $bp-tablets-650) {
+    @content;
+  }
+}
+
+@mixin tabs-phones() {
+  @media screen and (max-width: $bp-tabs-phones) {
+    @content;
+  }
+}
+
+@mixin phones() {
+  @media screen and (max-width: $bp-phones) {
+    @content;
+  }
+}

@@ -1,81 +1,131 @@
-    .skills {
-        position: relative;
-        background-color: #fff;
-        padding-top: 170px;
+.skills {
+    position: relative;
+    background-color: #fff;
+    padding-top: 170px;
 
-        &__triangles {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            right: 0;
-        }
-
-        &__wrapper {
-            display: flex;
-            align-items: flex-start;
-
-        }
-
+    &__triangles {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
     }
 
-    .skills-img {
-        max-width: 50%;
-        padding-top: 100px;
-        margin-left: -100px;
-
-    }
-
-    .skills-card {
-        width:100%;
-
-        &__desc {
-            margin-bottom: 80px;
-            h2 {
-                font-size: 30px;
-                max-width: 630px;
-                font-weight: 800;
-                margin-bottom: 60px;
-
-            }
-
-            p {
-                max-width: 590px;
-                opacity: 0.5;
-
-            }
-
-
-        }
-
-        &__skills-list {
-            max-width: 760px;
-            margin-left: 10%;
-
-        }
-    }
-
-    .skills-category {
+    &__wrapper {
         display: flex;
-        flex-direction: column;
-        margin-bottom: 40px;
+        align-items: flex-start;
+        @include tablets {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+    }
 
-        &__name {
-            font-size: 24px;
+    @media screen and (max-width: $bp-phones) {
+        padding-top: 60px;
+    }
+}
+
+.skills-img {
+    max-width: 50%;
+    padding-top: 100px;
+    margin-left: -100px;
+    @include desktop {
+        margin-left: -210px;
+        min-width: 550px;
+    }
+    @include tablets {
+        min-width: auto;
+        margin: 0;
+    }
+    @media screen and (max-width: $bp-phones) {
+        max-width: 100%;
+        padding-top: 10px;
+    }
+}
+
+.skills-card {
+    width:100%;
+
+    &__desc {
+        margin-bottom: 80px;
+        h2 {
+            font-size: 30px;
+            max-width: 630px;
             font-weight: 800;
-            margin-bottom: 20px;
-
+            margin-bottom: 60px;
+            @include tablets {
+                font-size: 30px;
+                max-width: 275px;
+                margin: 0 auto 20px;
+            }
+            @media screen and (max-width: $bp-phones) {
+                font-size: 24px;
+                max-width: 100%;
+                padding-top: 10px;
+            }
         }
 
-        &__list {
-            display: flex;
+        p {
+            max-width: 590px;
+            opacity: 0.5;
+            @include tablets {
+                max-width: 450px;
+                margin: 0 auto 0;
+            }
+        }
 
+        @include desktop-tabs {
+            margin-bottom: 40px;
+        }
+
+        @include tablets {
+            text-align: center;
         }
     }
 
-    .skill {
-        margin-right: 5%;
-        max-width: 150px;
-        min-width: 110px;
-        max-height: 150px;
-        min-height: 110px;
+    &__skills-list {
+        max-width: 760px;
+        margin-left: 10%;
+        @include desktop-tabs {
+            margin-left: 0;
+        }
     }
+}
+
+.skills-category {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+
+    &__name {
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        @include tablets {
+            text-align: center;
+        }
+        @media screen and (max-width: $bp-phones) {
+            font-size: 18px
+        }
+    }
+
+    &__list {
+        display: flex;
+        @include desktop-tabs {
+            flex-wrap: wrap;
+        }
+        @include tablets {
+            flex-wrap: nowrap;
+        }
+        @media screen and (max-width: $bp-phones) {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.skill {
+    margin-right: 5%;
+    max-width: 150px;
+    min-width: 110px;
+    max-height: 150px;
+    min-height: 110px;
+}

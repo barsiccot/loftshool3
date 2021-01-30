@@ -1,105 +1,132 @@
-    .footer {
-        position: relative;
-        min-height: 408px;
-        background-color: #252830;
+.footer {
+    position: relative;
+    min-height: 408px;
+    background-color: #252830;
 
-        &__wrapper {
-            display: flex;
-            padding-top: 100px;
-            padding-bottom: 50px;
-            color: rgba(100, 100, 100, 0.8);
+    &__wrapper {
+        display: flex;
+        padding-top: 100px;
+        padding-bottom: 50px;
+        color: rgba(100, 100, 100, 0.8);
 
+        @media screen and (max-width: $bp-phones) {
+            flex-wrap: wrap;
         }
     }
+}
 
-    .footer__block {
+.footer__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 30px;
+
+    &-row {
         display: flex;
+    }
+}
+
+.footer__about {
+    display: flex;
+    flex-direction: row;
+
+    @include desktop {
         flex-direction: column;
-        justify-content: flex-start;
-        line-height: 30px;
-
-        &-row {
-            display: flex;
-        }
     }
+}
 
-    .footer__about {
-        display: flex;
-        flex-direction: row;
+.footer__copyright {
+    font-size: 48px;
+    margin: 0 60px 30px 0;
+}
+
+.footer__bio {
+    max-width: 157px;
+    margin-right: 127px;
+    &-name {
+        color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
     }
-
-    .footer__copyright {
-        font-size: 48px;
-        margin: 0 60px 30px 0;
-    }
-
-    .footer__bio {
-        max-width: 157px;
-        margin-right: 127px;
+    @media screen and (max-width: $bp-phones) {
+        max-width: none;
+        margin-bottom: 30px;
+        margin-right: 0;
         &-name {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.footer__data {
+    max-width: 977px;
+    .footer__nav {
+        margin-bottom: 30px;
+        .menu__list {
+            flex-wrap: wrap;
+        }
+        .menu__item {
+            padding-bottom: 25px;
+        }
+        .menu__link {
             color: #fff;
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 20px;
+            &:hover {
+                color: rgba(100,100,100,0.8);
+            }
         }
-
-    }
-
-    .footer__data {
-        max-width: 977px;
-        .footer__nav {
-            margin-bottom: 30px;
-            .menu__list {
-                flex-wrap: wrap;
-            }
-            .menu__item {
-                padding-bottom: 25px;
-            }
-            .menu__link {
-                color: #fff;
-                &:hover {
-                    color: rgba(100,100,100,0.8);
-                }
-            }
-
-        }
-
-        .footer__desc {
-            max-width: 348px;
-            margin: 0 75px 30px 0;
-
-            &-text {
-                margin-bottom: 30px;
-            }
-            &-socials {
-                .socials__item {
-                    border: 2px solid rgba(100,100,100,0.8);
-                    border-radius: 50%;
-                    width: 50px;
-                    height: 50px;
-                    &:hover {
-                        opacity: 0.5;
-                    }
-                    .socials__link {
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 50%;
-                    }
-                    .socials__icon {
-                        fill: rgba(100,100,100,0.8);
-                        padding: 12px;
-                    }
-                }
-            }
+        @media screen and (max-width: $bp-phones) {
+            margin-bottom: 10px;
         }
     }
 
-    .footer__quote {
-        max-width: 474px;
+    .footer__desc {
+        max-width: 348px;
+        margin: 0 75px 30px 0;
+
         &-text {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
-        &-author {
-            color: #fff;
+        &-socials {
+            .socials__item {
+                border: 2px solid rgba(100,100,100,0.8);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                &:hover {
+                    opacity: 0.5;
+                }
+                .socials__link {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+                .socials__icon {
+                    fill: rgba(100,100,100,0.8);
+                    padding: 12px;
+                }
+            }
         }
     }
+}
+
+.footer__quote {
+    max-width: 474px;
+    &-text {
+        margin-bottom: 25px;
+    }
+    &-author {
+        color: #fff;
+    }
+}
+
+
+@include tablets {
+    .footer__other {
+        flex-wrap: wrap;
+        .footer__desc,
+        .footer__quote {
+            max-width: none;
+        }
+    }
+}

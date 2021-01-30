@@ -14,13 +14,38 @@
         line-height: 1;
         color: #e6e6e6;
         z-index: -1;
+        @include desktop {
+            font-size: 300px;
+        }
+        @include desktop-tabs {
+            font-size: 400px;
+        }
+        @include tablets {
+            font-size: 300px;
+        }
+        @media screen and (max-width: $bp-phones) {
+            display: none;
+        }
     }
-
+    @include desktop {
+        flex: 4;
+    }
+    @include tablets {
+        min-width: 550px;
+        margin-right: 100px;
+    }
+    @media screen and (max-width: $bp-phones) {
+        min-width: 100%;
+        margin: 0;
+    }
 }
 
 .slider__main {
     height: 570px;
     position: relative;
+    @include desktop {
+        height: 450px;
+    }
 }
 
 .slider__buttons {
@@ -68,10 +93,17 @@
             }
         }
 
-
+        @media screen and (max-width: $bp-phones) {
+            background-color: #2d3c4e;
+        }
         
     }
-
+    @media screen and (max-width: $bp-phones) {
+        box-shadow: -15px 0px 65px rgba(0,0,0,0.6);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
 }
 
 .slider__current-item {
@@ -84,8 +116,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    max-width: 310px;
-    max-height: 610px;
+    max-width: 180px;
+    max-height: 440px;
     box-shadow: -25px 0px 45px rgba(0,0,0,0.6);
 }
 
@@ -101,6 +133,9 @@
     }
     &.active {
         border: 3px solid #dc9322;
+    }
+    @include desktop {
+        max-height: 110px;
     }
 }
 
