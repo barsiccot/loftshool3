@@ -1,6 +1,4 @@
 import Vue from "vue";
-import axios from 'axios';
-import paths from '../../env.paths.json';
 
 const thumbs = {
     template: "#preview-thumbs",

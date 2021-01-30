@@ -1,0 +1,25 @@
+.card
+  form.card-header
+    .card-header-title
+      .input__wrapper
+        input( type="text" v-model="title" placeholder="Название группы" ).category-input
+    .control-btns(v-if="this.empty === true")
+      button(key="save-category" type="submit" ).save-category
+        Icon(key="save-category-icon" name="tick" className="save-category-icon")
+      button(key="save-category-cancel" type="button" ).save-category-cancel
+         Icon(key="save-category-cancel-icon" name="remove" className="save-category-cancel-icon")
+    .control-btns(v-else)
+      button(key="edit-category" type="button" ).edit-category
+        Icon(key="edit-category-icon" name="pencil" className="edit-category-icon")
+  .card-content
+    table(v-if="this.empty === false").skill-list
+      Skill(:key="skill.id" v-for="skill in skills" :skill="skill")
+  form.card-footer
+    .input__wrapper
+      input( type="text" placeholder="Новый навык").skill-input
+    .percent.input-wrapper.input__wrapper
+      input( type="number"  placeholder="0" min="0" max="100").percent-input
+      span.percent-sign %
+    button(type="submit" @click.prevent="createSkill").add-btn.medium.add-skill-btn
+      .circle-add-btn
+        Icon(name="plus" className="add-btn-icon")
