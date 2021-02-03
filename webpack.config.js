@@ -11,7 +11,7 @@ const url =require("postcss-url");
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = '/loftschool/dist/';
+  const publicPath = '/loftshool3/dist/';
 
   const pcss = {
     test: /\.(p|post|)css$/,
