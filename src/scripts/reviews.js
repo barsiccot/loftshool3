@@ -10,7 +10,16 @@ new Vue({
             reviews: [],
             currentSlide: 0,
             sliderOptions: {
-                slidesPerView: 2
+                slidesPerView: 1,
+
+                // Responsive breakpoints
+                breakpoints: {
+                    // when window width is <= 790px
+                    480: {
+                        slidesPerView: 2,
+                    }
+
+                }
             },
             next: true,
             back: false

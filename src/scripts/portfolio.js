@@ -74,7 +74,7 @@ new Vue({
     methods: {
         getLoopForIndex(index) {
             if (index < 0) this.currentIndex = this.works.length - 1;
-            if (index > this.works.length - 1) this.currentIndex = t0;
+            if (index > this.works.length - 1) this.currentIndex = 0;
 
         },
         requireDataToArray(data) {
