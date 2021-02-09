@@ -10,7 +10,21 @@
   overflow-y: auto;
   scroll-behavior: smooth;
 }
+.notification{
+  transition: transform .3s;
+ }
+.notify-container{
+     position:fixed;
+     top:100%;
+     left:50%;
+     transform: translateX(-50%);
 
+  &.active{
+   .notification{
+      transform: translateY(-100%);
+    }
+  }
+}
 .maincontent {
   background: url("../images/mountain_baloon.jpg") no-repeat center center;
   background-size: cover;
@@ -20,8 +34,6 @@
   width: 100%;
   min-height: 100%;
   background-color: rgba(246, 250, 255, 0.93);
-  padding-top: 60px;
-
 }
 .header{
   display: flex;

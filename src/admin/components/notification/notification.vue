@@ -1,7 +1,7 @@
 <template>
   <div class="inner-tooltip-container" :class="type">
     <div class="tooltip__text">{{text}}</div>
-    <button v-on="$listeners" class="tooltip__close"></button>
+    <button v-on="$listeners" class="tooltip__close">x</button>
   </div>
 </template>
 

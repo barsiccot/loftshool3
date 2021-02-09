@@ -1,16 +1,16 @@
 <template>
-    <tr class="skill-row" v-if="editMode === false">
+    <tr class="skill-row" v-if="skill.editMode === false">
         <td class="name" >
             {{skill.title}}
         </td>
         <td class="percent-value">
             {{skill.percent}} %
-   </td>
+        </td>
         <td class="control-btns">
-            <button type="button" class="edit-skill" @click="editMode =true">
+            <button type="button" class="edit-skill" @click="editSkill">
                 <Icon key="edit-skill" name="pencil" className="edit-skill-icon"/>
             </button>
-            <button type="button" class="remove-skill" @click="$emit('remove', skill.id)">
+            <button type="button" class="remove-skill" @click="removeSkill">
                 <Icon key="remove-skill" name="trash"  className="remove-skill-icon"/>
             </button>
         </td>
@@ -23,7 +23,7 @@
         </td>
         <td class="percent-value">
             <div class="percent input__wrapper"  :class="{ 'error': $v.skill.percent.$error }">
-                <input v-model="skill.percent" type="number" :readonly="!editMode" placeholder="0"
+                <input v-model="skill.percent" type="number" :readonly="!skill.editMode" placeholder="0"
                        class="percent-input"/>
                 <span class="percent-sign">%</span>
                 <div class="error-msg" v-if="!$v.skill.percent.required && $v.skill.percent.$dirty"> Обязательное поле</div>
@@ -36,7 +36,7 @@
                 <Icon key="save-category-icon" name="tick"
                       className="save-skill-icon"/>
             </button>
-            <button type="button" class="save-skill-cancel" @click="editMode = false">
+            <button type="button" class="save-skill-cancel" @click="skill.editMode = false">
                 <Icon key="save-skill-cancel" name="remove" className="save-skill-cancel-icon"/>
             </button>
 
@@ -51,16 +51,19 @@ import {required, between} from 'vuelidate/lib/validators';
 import Icon from '../../Icon';
 import Button from "../../button/button";
 import Input from "../../input/input";
+import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
-    data() {
+  data() {
         return {
-            editMode: false,
             skill: {
-                id: 0,
+                id: this.skillProp.id,
+                category: this.skillProp.category,
                 title: this.skillProp.title,
-                percent: this.skillProp.percent
-            }
+                percent: this.skillProp.percent,
+                editMode: false
+
+            },
         }
     },
     mounted() {
@@ -85,13 +88,48 @@ export default {
     },
     components: {Input, Button, Icon},
     methods: {
-        saveSkill(){
-            console.log(this.$v.skill.$error)
-                this.$v.skill.$touch();
-                if (!this.$v.skill.$anyError) {
-                  this.editMode =false;
+        ...mapActions({
+            hideTooltip:"tooltips/hide",
+            showTooltip: "tooltips/show",
+            deleteSkill: "categories/deleteSkill",
+            updateSkill:"categories/updateSkill"
+
+        }),
+        editSkill() {
+            this.skill.editMode = true;
+        },
+        async saveSkill() {
+            this.$v.skill.$touch();
+            if (!this.$v.skill.$anyError) {
+                let response = await this.updateSkill(this.skill);
+                if (response.status == 200) {
+                    this.skill.editMode = false;
+                    this.showTooltip({
+                        text:'Скилл успешно обновлен',
+                        type:"success"
+                    })
+                } else {
+                    this.showTooltip({
+                        text:'Не удалось добавить скилл',
+                        type:"error"
+                    })
                 }
-         },
+            }
+        },
+      async removeSkill() {
+        const response = await this.deleteSkill({id: this.skill.id, categoryId: this.skill.category});
+        if (response.status == 200) {
+            this.showTooltip({
+                text:'Скилл ' + this.skill.title + ' успешно удален',
+                type:"success"
+            }) ;
+        } else {
+            this.showTooltip({
+                text:'Не удалось удалить скилл',
+                type:"error"
+            })
+        }
+      }
     }
 }
 </script>

@@ -6,24 +6,20 @@
                 <iconed-btn
                     v-if="isAddFormActive ===false"
                     type="iconed"
+                    @setActive="setActive"
                     @click="isAddFormActive = true"
                     title="Добавить группу"/>
             </div>
-            <div class="about-content container">
+            <div class="about-content container" >
                 <div class="card-list">
                     <Category
                         v-if="isAddFormActive"
-                        @remove="isAddFormActive = false"
+                        @setActive="setActive"
                         empty
+                        :cat="emptyCategory"
                     />
-                    <Category
-                        v-for="category in categories"
-                        :key="category.id"
-                        :title="category.category"
-                        :skills="category.skills"
-                        @remove-skill="removeSkill"
-                        @edit-skill="editSkill"
-                    />
+                    <Category v-if="categories.length"  @setActive="setActive"  :key="cat.id" v-for="cat in categories" :cat="cat" />
+                    <div v-else>loading...</div>
                 </div>
             </div>
 
@@ -35,28 +31,44 @@
 <script>
 import IconedBtn from '../button/types/iconedBtn';
 import Category from './Category/Category';
+import { mapActions, mapState } from 'vuex';
+
 
 export default {
     data() {
         return {
             isAddFormActive: false,
-            categories: []
-
+            emptyCategory: {
+                id: 0,
+                category: '',
+                created_at: '',
+                updated_at: '',
+                user_id: '',
+                skills: []
+            }
         }
     },
-    computed: {},
+    computed: {
+        ...mapState({
+            categories: state => state.categories.categories,
+        })
+    },
     components: {IconedBtn, Category},
     created() {
-        this.categories = require('../../data/categories.json')
+        this.fetchCategories();
+
     },
     methods: {
-        removeSkill() {
-            console.log('remove skill');
+        ...mapActions({
+            fetchCategories:"categories/fetchCategories",
+            hideTooltip:"tooltips/hide",
+            showTooltip: "tooltips/show",
+        }),
+        setActive(isActiveCard){
+            this.isAddFormActive =isActiveCard;
+            console.log('kk',this.isAddFormActive)
         },
-        editSkill(skill) {
-            console.log('edit skill');
 
-        }
     }
 }
 </script>
