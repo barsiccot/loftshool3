@@ -144,7 +144,6 @@ export default {
 
             const response = await this.deleteCategory(this.category.id);
             if (response.status == 200) {
-                console.log('j')
               this.showTooltip({
                     text:'Категория ' + this.category.title + ' успешно удалена',
                     type:"success"
