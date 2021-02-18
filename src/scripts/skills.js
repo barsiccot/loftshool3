@@ -1,4 +1,7 @@
 import Vue from "vue";
+import axios from 'axios';
+import paths from '../../env.paths.json';
+
 const skillsItem ={
     props:["skill"],
     template:"#skills-item",
@@ -31,7 +34,10 @@ new Vue({
             skills:[]
         }
     },
-    created() {
-       this.skills = require("../scripts/data/skills.json")
-    }
+    async created() {
+        const data = await axios.get(paths.BASE_URL + '/categories/429');
+        this.skills = data.data;
+        console.log('skills',this.skills);
+
+    },
 })

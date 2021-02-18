@@ -6,7 +6,7 @@
       </div>
      <div class="user-name">Евгения</div>
      <div class="page-desc tabs-phones-hidden">Панель администрирования</div>
-     <a href="#" class="logout">Выйти </a>
+     <a href="#"  @click="logout" class="logout">Выйти </a>
      </div>
     </div>
 </template>
@@ -14,8 +14,15 @@
 
 <script>
 import avatar from "../avatar";
-
+import {mapActions} from "vuex";
 export default {
     components: {avatar},
+    methods: {
+      ...mapActions('user', ['logoutUser']),
+      async logout() {
+        await this.logoutUser();
+        this.$router.replace('/login');
+      }
+    }
 }
 </script>

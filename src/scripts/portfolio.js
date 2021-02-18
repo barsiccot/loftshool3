@@ -1,4 +1,6 @@
 import Vue from "vue";
+import axios from 'axios';
+import paths from '../../env.paths.json';
 
 const thumbs = {
     template: "#preview-thumbs",
@@ -43,7 +45,8 @@ const info = {
     props: ["currentWork"],
     computed: {
         tagsArray() {
-            return this.currentWork.skills.split(',');
+            console.log('dddd',this.currentWork)
+            return this.currentWork.techs.split(',');
         }
     }
 }
@@ -78,14 +81,9 @@ new Vue({
 
         },
         requireDataToArray(data) {
-            return data.works.map(item => {
-                const photo = require(`../images/content/${item.photo}`);
-                const title = item.title;
-                const desc = item.desc;
+            return data.data.map(item => {
+                const photo = paths.BASE_URL +'/'+ item.photo;
                 item.photo = photo;
-                item.title = title;
-                item.desc = desc;
-
                 return item;
             })
         },
@@ -94,13 +92,9 @@ new Vue({
             const lastItems =this.works[this.works.length - 1];
             switch (direction) {
                 case 'next':
-                    this.works.push(this.works[0]);
-                    this.works.shift();
                     this.currentIndex++;
                     break;
                 case 'prev':
-                    this.works.unshift(lastItems);
-                    this.works.pop();
                     this.currentIndex--;
                     break;
             }
@@ -109,8 +103,10 @@ new Vue({
             this.currentIndex = workIndex;
         }
     },
-    created() {
-        const data = require('../scripts/data/works.json');
+   async created() {
+        const data = await axios.get(paths.BASE_URL + '/works/429');
         this.works = this.requireDataToArray(data)
+       console.log('work',this.works)
+
     }
 })

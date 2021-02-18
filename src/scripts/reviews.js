@@ -1,5 +1,8 @@
 import Vue from "vue";
 import {Swiper, SwiperSlide} from "vue-awesome-swiper";
+import axios from 'axios';
+import paths from '../../env.paths.json';
+
 import "swiper/swiper-bundle.css";
 new Vue({
     el: "#reviews-component",
@@ -28,12 +31,10 @@ new Vue({
 
     methods: {
         requireDataToArray(data) {
-            return data.reviews.map(item => {
-                const photo = require(`../images/content/${item.photo}`);
+            return data.data.map(item => {
+                const photo = paths.BASE_URL +'/'+ item.photo;
                 item.photo = photo;
-
-                console.log('gsww', item)
-                return item;
+               return item;
             })
         },
         slideChange(direction) {
@@ -50,9 +51,10 @@ new Vue({
             this.$emit('slideChange',)
         }
     },
-    created() {
-        const data = require('../scripts/data/reviews.json');
+  async created() {
+        const data = await axios.get(paths.BASE_URL + '/reviews/429');
         this.reviews = this.requireDataToArray(data)
+      console.log('review',this.reviews)
     }
 
 });

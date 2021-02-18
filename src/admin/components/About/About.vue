@@ -30,7 +30,6 @@
 
 <script>
 import IconedBtn from '../button/types/iconedBtn';
-import Category from './Category/Category';
 import { mapActions, mapState } from 'vuex';
 
 
@@ -53,7 +52,10 @@ export default {
             categories: state => state.categories.categories,
         })
     },
-    components: {IconedBtn, Category},
+    components: {
+      IconedBtn,
+      Category:()=>import("./Category/Category")
+    },
     created() {
         this.fetchCategories();
 

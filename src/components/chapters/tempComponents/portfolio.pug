@@ -54,7 +54,7 @@ script(type="text/x-template")#preview-info
   .portfolio__desc
     tags(:skills="tagsArray")
     h3.portfolio__desc-title {{currentWork.title}}
-    .portfolio__desc-info {{currentWork.desc}}
+    .portfolio__desc-info {{currentWork.description}}
     a(:href="currentWork.link" target="_blank").portfolio__desc-link
       +icon("link", "portfolio__desc-link-icon")
       |Посмотреть сайт

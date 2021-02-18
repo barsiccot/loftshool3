@@ -15,6 +15,8 @@ import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import About from './components/About/About';
 import notification from "./components/notification";
+import Works from './components/Works/Works';
+import Reviews from './components/Reviews/Reviews';
 import  {mapState, mapActions} from "vuex";
 export default {
     data() {
@@ -26,7 +28,9 @@ export default {
         Header,
         Nav,
         About,
-        notification
+        notification,
+        Works,
+        Reviews
     },
     methods:{
       ...mapActions({

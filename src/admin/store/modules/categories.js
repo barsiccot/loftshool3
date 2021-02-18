@@ -26,7 +26,11 @@ export default {
             console.log(state.categories)
             state.categories = state.categories.map(cat => {
                 if (cat.id === newSkill.category) {
-                    console.log('h',cat)
+                   if(!cat.skills){
+                       cat.skills=[];
+                       console.log('der',cat)
+
+                   }
                     cat.skills.push(newSkill);
                 }
                 return cat;
@@ -63,7 +67,7 @@ export default {
                 return error;
             }
         },
-        async fetchCategories(context, userId) {
+        async fetchCategories(context) {
             try {
                 const response = await this.$axios.get('/categories/429');
                 console.log('Fetched categories');
